@@ -102,6 +102,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Contactos");
+        setResizable(false);
 
         etqNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         etqNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
