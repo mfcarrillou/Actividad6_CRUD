@@ -13,19 +13,21 @@ public class Mostrar {
             long numero;
             mensaje = "";
             File archivo = new File("Contactos.txt");
-            
-            if (archivo.exists() == false) {
-                archivo.createNewFile();
-            }
-            
-            RandomAccessFile raf = new RandomAccessFile(archivo, "rw");
-            
-            while (raf.getFilePointer() < raf.length()) {
-                contacto = raf.readLine();
-                String[] informacion = contacto.split("!");
-                nombre = informacion[0];
-                numero = Long.parseLong(informacion[1]);
-                mensaje += "\nNombre del contacto: " + nombre + ".\n" + "Número del contacto: " + numero + ".\n";
+
+            if (archivo.exists()&& archivo.length() != 0){
+                RandomAccessFile raf = new RandomAccessFile(archivo, "rw");
+
+                while (raf.getFilePointer() < raf.length()) {
+                    contacto = raf.readLine();
+                    String[] informacion = contacto.split("!");
+                    nombre = informacion[0];
+                    numero = Long.parseLong(informacion[1]);
+                    mensaje += "\nNombre del contacto: " + nombre + ".\n" + "Número del contacto: " + numero + ".\n";
+                }
+                
+                raf.close();
+            } else {
+                mensaje = "\nNo hay contactos disponibles.";
             } 
         } catch (IOException ioe) {
             mensaje = "\nError de entrada/salida\n" + ioe;

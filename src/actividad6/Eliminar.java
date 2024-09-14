@@ -32,7 +32,7 @@ public class Eliminar {
                 }
             }
 
-            if (existe == true) {
+            if (existe) {
                 File archTemp = new File("temp.txt");
                 RandomAccessFile rafTemp = new RandomAccessFile(archTemp, "rw");
                 raf.seek(0);
@@ -51,14 +51,14 @@ public class Eliminar {
                 }
  
                 raf.seek(0);
+                raf.setLength(0);
                 rafTemp.seek(0);
-                
+                                
                 while (rafTemp.getFilePointer() < rafTemp.length()) {
                     raf.writeBytes(rafTemp.readLine());
                     raf.writeBytes(System.lineSeparator());
                 }
 
-                raf.setLength(rafTemp.length());
                 rafTemp.close();
                 raf.close();
                 archTemp.delete();

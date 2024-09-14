@@ -34,7 +34,7 @@ public class Actualizar {
                 }
             }
             
-            if (existe == true) {
+            if (existe) {
                 File archTemp = new File("Temp.txt");
                 RandomAccessFile rafTemp= new RandomAccessFile(archTemp, "rw");
                 raf.seek(0);
@@ -51,14 +51,14 @@ public class Actualizar {
                 }
                 
                 raf.seek(0);
+                raf.setLength(0);
                 rafTemp.seek(0);
-                
+                                
                 while (rafTemp.getFilePointer() < rafTemp.length()) {
                     raf.writeBytes(rafTemp.readLine());
                     raf.writeBytes(System.lineSeparator());
                 }
                 
-                raf.setLength(rafTemp.length());
                 rafTemp.close();
                 raf.close();
                 archTemp.delete();
